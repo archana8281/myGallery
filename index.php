@@ -7,8 +7,11 @@ error_reporting(E_ALL);
 
 $sqlconnection = mysqli_connect('localhost', 'root', '', 'mygallery')or die("connection error");
 $id = $_COOKIE['id'];
+if(empty($id)){
+   header("location:login.php");
+}
 $user = $_COOKIE['username'];
-echo $select = "SELECT `profile` FROM `user` WHERE id=$id";
+ $select = "SELECT `profile` FROM `user` WHERE id=$id";
 $result = mysqli_query($sqlconnection, $select);
 $selectdp = mysqli_fetch_assoc($result) or die("query error");
 ?>
