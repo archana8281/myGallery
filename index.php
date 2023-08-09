@@ -1,9 +1,9 @@
 <?php
 $id = $_COOKIE['id'];
 $user = $_COOKIE['username'];
-$sqlconnection = mysqli_connect('localhost', 'root', '', 'mygallery');
+$sqlconnection = mysqli_connect('localhost', 'root', '', 'mygallery')or die("connection error");
 $select = "SELECT `profile` FROM `user` WHERE id=$id";
-$selectdp = mysqli_fetch_assoc(mysqli_query($sqlconnection, $select));
+$selectdp = mysqli_fetch_assoc(mysqli_query($sqlconnection, $select))or die("query error");
 ?>
 
 <!DOCTYPE html>
