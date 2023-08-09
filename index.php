@@ -1,4 +1,9 @@
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $id = $_COOKIE['id'];
 $user = $_COOKIE['username'];
 $sqlconnection = mysqli_connect('localhost', 'root', '', 'mygallery')or die("connection error");
