@@ -36,7 +36,7 @@ foreach ($rows as $row) {
     if (!empty($row['type']) && $row['type'] === 'video') {
         echo '<div class="column"> <video src="' . $row['path'] . '" style="height: 300px; width:200px;" onclick="myFunction(this,\'vid\');"></video> 
         <div class="Dsection">
-        <a href=delete.php?id=' . $row['id'] . ' class="deletebtn">Delete</a>
+        <a href=delete.php?id='.$row['id'].' class="deletebtn">Delete</a>
      </div>
 
         </div>';
