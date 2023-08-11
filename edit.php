@@ -20,9 +20,8 @@ if ($_POST) {
     $place = $_REQUEST['place'];
 
     http_response_code(200);
-    $update = "UPDATE user SET name = '" . $name . "', dob = '" . $dob . "',pincode = '" . $pincode . "', place = '" . $place . "' WHERE id=$id";
+    $update = "UPDATE user SET name = '" . $name . "', dob = '" . $dob . "',pincode = '" . $pincode . "', place = '" . $place . "' WHERE id='".$id."'";
     $result = mysqli_query($sqlconnection, $update) or die("query error");
-    print_r($result);
     $msg = "Record Updated Successfully";
     header('Location: index.php');
     exit(0);
