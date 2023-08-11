@@ -16,7 +16,7 @@ if ($_FILES) {
     $targetFile1 = "upload/add/" . $user . "." . $uid . "." . $ext;
 
     if (move_uploaded_file($_FILES["addNew"]["tmp_name"], $targetFile1)) {
-      $sql = "INSERT INTO media(id, type, path, Uid)  VALUES('','image','$targetFile1','$id')";
+      $sql = "INSERT INTO media(type, path, Uid)  VALUES('image','$targetFile1','$id')";
       $result = mysqli_query($sqlconnection, $sql);
       $targetFile1 . "?" . rand(1000, 10000);
       echo "uploaded successfully..";
@@ -30,7 +30,7 @@ if ($_FILES) {
     $targetFile2 = "upload/add/" . $user . "." . $uid . "." . $ext;
 
     if (move_uploaded_file($_FILES["addNew"]["tmp_name"], $targetFile2)) {
-      $sql = "INSERT INTO media(id, type, path, Uid)  VALUES('','video','$targetFile2','$id')";
+      $sql = "INSERT INTO media(id, type, path, Uid)  VALUES('video','$targetFile2','$id')";
       $result = mysqli_query($sqlconnection, $sql);
       $targetFile2 . "?" . rand(1000, 10000);
       echo "uploaded successfully..";
