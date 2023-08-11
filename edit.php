@@ -6,7 +6,6 @@ $sql = "SELECT * FROM user WHERE id = $id";
 $result = mysqli_query($sqlconnection, $sql);
 $row = mysqli_fetch_assoc($result);
 $profile = $row['profile'];
-// print_r($profile);
 
 if ($_POST) {
     $name = $_REQUEST['name'];
@@ -23,9 +22,6 @@ if ($_POST) {
     $msg = "Record Updated Successfully";
     header('Location: index.php');
     exit(0);
-    // print_r(mysqli_query($sqlConnection, $update));
-    // var_dump(mysqli_query($sqlConnection, $update));
-
 } else {
     $msg = "Invalid";
 }

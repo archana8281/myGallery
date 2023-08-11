@@ -1,11 +1,11 @@
 <?php
-$Uid = $_GET['Uid'];
+$Mid = $_GET['id'];
 $user = $_COOKIE['username'];
-if (!$Uid) {
+if (!$Mid) {
     echo  "operation failed";
 } else {
-     $sqlconnection = mysqli_connect('localhost', 'root', '', 'mygallery');
-    $sql = "DELETE FROM $user  WHERE Uid = $Uid";
+    $sqlconnection = mysqli_connect('localhost', 'root', '', 'mygallery');
+    $sql = "DELETE FROM media  WHERE id = $Mid";
     $result = mysqli_query($sqlconnection, $sql) or die("query error");
     header('Location: index.php');
 }

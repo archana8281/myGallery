@@ -4,7 +4,7 @@ $user = $_COOKIE['username'];
 $sqlconnection = mysqli_connect('localhost', 'root', '', 'mygallery');
 
 $ext = strtolower(pathinfo($_FILES["dp-upload"]["name"], PATHINFO_EXTENSION));
-$targetFile =  "upload/" .$id. "." .$user. ".". $ext;
+$targetFile =  "upload/profile/" .$id. "." .$user. ".". $ext;
 // print_r($fetch);
 if ($_FILES) {
 

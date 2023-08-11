@@ -5,13 +5,13 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
-$sqlconnection = mysqli_connect('localhost', 'root', '', 'mygallery')or die("connection error");
+$sqlconnection = mysqli_connect('localhost', 'root', '', 'mygallery') or die("connection error");
 $id = $_COOKIE['id'];
-if(empty($id)){
+if (empty($id)) {
    header("location:login.php");
 }
 $user = $_COOKIE['username'];
- $select = "SELECT `profile` FROM `user` WHERE id=$id";
+$select = "SELECT `profile` FROM `user` WHERE id=$id";
 $result = mysqli_query($sqlconnection, $select);
 $selectdp = mysqli_fetch_assoc($result) or die("query error");
 ?>
@@ -41,7 +41,6 @@ $selectdp = mysqli_fetch_assoc($result) or die("query error");
             <div>
                <form id="uploadData" action="upload.php" method="post" enctype="multipart/form-data">
                   <input type="file" name="addNew" id="addNew" accept="image/*" style="display: none;">
-                  <input type="file" name="addvid" id="addNew" accept="video/*" style="display: none;">
                   <i class="fa fa-plus" aria-hidden="true" id="add"></i>
                </form>
             </div>
@@ -89,7 +88,6 @@ $selectdp = mysqli_fetch_assoc($result) or die("query error");
    <script>
       //IMAGE SHOW
       function myFunction(imgs, val) {
-         // console.log(val);
          if (val === 'img') {
             $(document).ready(function() {
                $('#expandedImg').show();
@@ -120,11 +118,12 @@ $selectdp = mysqli_fetch_assoc($result) or die("query error");
             // e.preventDefault();
             // var url = $(this).attr("href");
             e.preventDefault();
-      var type = $(this).data("type");
-      loadTypeContent(type);
+            var type = $(this).data("type");
+            loadTypeContent(type);
          });
-      function loadTypeContent(type) {
-      var url = "show.php?val=" + type;
+
+         function loadTypeContent(type) {
+            var url = "show.php?val=" + type;
             $.ajax({
                url: url,
                type: 'GET',
@@ -133,13 +132,12 @@ $selectdp = mysqli_fetch_assoc($result) or die("query error");
                contentType: false,
                processData: false,
                success: function(response) {
-                  // console.log(response);
                   $('#typeShow').html(response);
                }
 
             })
          }
-       
+
 
          // DELETE AN IMAGE
          $(document).on("click", ".deletebtn", function(e) {

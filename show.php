@@ -5,15 +5,14 @@ $sqlconnection = mysqli_connect('localhost', 'root', '', 'mygallery');
 
 switch ($value) {
     case 'img':
-        $sql ="SELECT `image`,`Uid` FROM $user"; 
+        $sql = "SELECT * FROM `media` WHERE type = 'image'";
         break;
     case 'vid':
-            $sql ="SELECT `video`,`Uid` FROM $user"; 
-            break;  
-     default:
-        $sql = "SELECT * FROM $user";  
-        break;      
-
+        $sql = "SELECT * FROM `media` WHERE type = 'video'";
+        break;
+    default:
+        $sql = "SELECT * FROM media";
+        break;
 }
 
 $result = mysqli_query($sqlconnection, $sql);
@@ -24,22 +23,21 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 foreach ($rows as $row) {
-    if (!empty($row['image'])) {
-        echo '<div class="column"> <img src="' . $row['image'] . '" alt="loading" style="height: 200px; width:200px;" onclick="myFunction(this,\'img\');" id="img"> 
+    if (!empty($row['type']) && $row['type'] === 'image') {
+        echo '<div class="column"> <img src="' . $row['path'] . '" alt="loading" style="height: 200px; width:200px;" onclick="myFunction(this,\'img\');" id="img"> 
         <div class="Dsection">
-        <a href=delete.php?Uid='.$row['Uid'].' class="deletebtn">Delete</a>
+        <a href=delete.php?id=' . $row['id'] . ' class="deletebtn">Delete</a>
      </div>
 
         </div>';
     }
-    
-    if (!empty($row['video'])) {
-        echo '<div class="column"> <video src="' . $row['video'] . '" style="height: 300px; width:200px;" onclick="myFunction(this,\'vid\');"></video> 
+
+    if (!empty($row['type']) && $row['type'] === 'video') {
+        echo '<div class="column"> <video src="' . $row['path'] . '" style="height: 300px; width:200px;" onclick="myFunction(this,\'vid\');"></video> 
         <div class="Dsection">
-        <a href=delete.php?Uid='.$row['Uid'].' class="deletebtn">Delete</a>
+        <a href=delete.php?id=' . $row['id'] . ' class="deletebtn">Delete</a>
      </div>
 
         </div>';
     }
 }
-?>

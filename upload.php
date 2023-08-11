@@ -2,16 +2,16 @@
 $id = $_COOKIE['id'];
 $user = $_COOKIE['username'];
 $uid = rand(10, 100);
-$sqlconnection = mysqli_connect('localhost', 'root', '', 'mygallery')or die("connection error");
+$sqlconnection = mysqli_connect('localhost', 'root', '', 'mygallery') or die("connection error");
 if ($_FILES) {
 
   $ext = strtolower(pathinfo($_FILES["addNew"]["name"], PATHINFO_EXTENSION));
- //  image upload
+  //  image upload
   if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif'])) {
-    $targetFile1 = "upload/" . $user . "." . $uid . "." . $ext;
+    $targetFile1 = "upload/add/" . $user . "." . $uid . "." . $ext;
 
     if (move_uploaded_file($_FILES["addNew"]["tmp_name"], $targetFile1)) {
-      $sql = "INSERT INTO $user(Uid, image)  VALUES('$uid', '$targetFile1')";
+      $sql = "INSERT INTO media(id, type, path, Uid)  VALUES('','image','$targetFile1','$id')";
       $result = mysqli_query($sqlconnection, $sql);
       $targetFile1 . "?" . rand(1000, 10000);
       echo "uploaded successfully..";
@@ -22,10 +22,10 @@ if ($_FILES) {
 
   //  video upload
   elseif (in_array($ext, ['mp4', 'avi', 'mov'])) {
-    $targetFile2 = "upload/" . $user . "." . $uid . "." . $ext;
+    $targetFile2 = "upload/add/" . $user . "." . $uid . "." . $ext;
 
     if (move_uploaded_file($_FILES["addNew"]["tmp_name"], $targetFile2)) {
-      $sql = "INSERT INTO $user(Uid, video)  VALUES('$uid', '$targetFile2')";
+      $sql = "INSERT INTO media(id, type, path, Uid)  VALUES('','video','$targetFile2','$id')";
       $result = mysqli_query($sqlconnection, $sql);
       $targetFile2 . "?" . rand(1000, 10000);
       echo "uploaded successfully..";

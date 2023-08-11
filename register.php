@@ -6,7 +6,6 @@ error_reporting(E_ALL);
 
 $msg = "";
 $sqlconnection = mysqli_connect('localhost', 'root', '', 'mygallery') or die("connection error");
-print_r($_REQUEST);
 if ($_POST) {
     $username = $_POST['username'];
     $Cpassword = md5($_POST['Cpassword']);
@@ -21,8 +20,6 @@ if ($_POST) {
             http_response_code(200);
             $insert = "INSERT INTO user (username, password, contact, gender) VALUES('" . $username . "','" . $Cpassword . "','" . $contact . "','" . $gender . "')";
             mysqli_query($sqlconnection, $insert) or die("query error");
-            $createTable = "CREATE TABLE $username(Uid int(2), image varchar(150), video varchar(150))";
-            mysqli_query($sqlconnection, $createTable);
             $msg = "Create an account successfully!!";
             header("location: login.php");
             exit;
