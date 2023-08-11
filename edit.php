@@ -13,12 +13,11 @@ if ($_POST) {
     $contact = $_REQUEST['number'];
     $pincode = $_REQUEST['pin'];
     $place = $_REQUEST['place'];
-    print_r($_REQUEST);
+
     http_response_code(200);
     $update = "UPDATE user SET name = '" . $name . "', dob = '" . $dob . "',pincode = '" . $pincode . "', place = '" . $place . "' WHERE id=$id";
     $result = mysqli_query($sqlconnection, $update) or die("query error");
     print_r($result);
-
     $msg = "Record Updated Successfully";
     header('Location: index.php');
     exit(0);
