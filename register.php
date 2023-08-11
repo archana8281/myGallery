@@ -1,6 +1,7 @@
 <?php
-$msg = " ";
+$msg = "";
 $sqlconnection = mysqli_connect('localhost', 'root', '', 'mygallery') or die("connection error");
+print_r($_REQUEST);
 if ($_POST) {
     $username = $_POST['username'];
     $Cpassword = md5($_POST['Cpassword']);
@@ -12,11 +13,11 @@ if ($_POST) {
         $row = mysqli_fetch_object($result);
 
         if (!$row) {
-            http_response_code(400);
+            http_response_code(200);
+            $insert = "INSERT INTO user (username, password, contact, gender) VALUES('" . $username . "','" . $Cpassword . "','" . $contact . "','" . $gender . "')";
+            mysqli_query($sqlconnection, $insert) or die("query error");
             $createTable = "CREATE TABLE $username(Uid int(2), image varchar(150), video varchar(150))";
             mysqli_query($sqlconnection, $createTable);
-            $insert = "INSERT INTO user (username, password, contact, gender) VALUES('".$username."','".$Cpassword."','".$contact."','".$gender."')";
-            mysqli_query($sqlconnection, $insert) or die("query error");
             $msg = "Create an account successfully!!";
             header("location: login.php");
             exit;
@@ -28,9 +29,6 @@ if ($_POST) {
     }
 }
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,41 +56,22 @@ if ($_POST) {
             <h1>Create an Account</h1>
             <form method="post" id="register">
                 <label for="username">Username</label><br>
-                <input type="text" name="username"  class="loginput" required><br>
+                <input type="text" name="username" class="loginput" required><br>
                 <label for="number">Number</label><br>
-                <input type="number" name="number"  class="loginput" required><br>
-                 <label for="gender">Gender</label><br>
+                <input type="number" name="number" class="loginput" required><br>
+                <label for="gender">Gender</label><br>
                 male<input type="radio" value="male" name="gender">
                 female<input type="radio" value="female" name="gender">
-                custom<input type="radio" value="custom" name="gender"><br><br> 
+                custom<input type="radio" value="custom" name="gender"><br><br>
                 <label for="password">Password</label><br>
-                <input type="password" name="password"  class="loginput" required><br>
+                <input type="password" name="password" class="loginput" required><br>
                 <label for="Cpassword">Confirm Password</label><br>
-                <input type="password" name="Cpassword"  class="loginput" required><br>
+                <input type="password" name="Cpassword" class="loginput" required><br>
                 <p><?php echo $msg; ?></p>
                 <input type="submit" value="sign in" class="logbtn"><br><br>
             </form>
         </div>
     </div>
 </body>
-<!-- <script>
-    $(document).ready(function() {
-        $('#register').submit(function(e) {
-            e.preventDefault();
-            $.ajax({
-                type: 'POST',
-                url: 'register.php',
-                data: new FormData(this),
-                contentType: false,
-                processData: false,
-                success: function(response) {
-                    // console.log(response);
-                    // alert(response);
-                }
-
-            });
-        })
-    })
-</script> -->
 
 </html>

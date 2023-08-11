@@ -9,14 +9,14 @@ $profile = $row['profile'];
 // print_r($profile);
 
 if ($_POST) {
-    $username = $_REQUEST['username'];
+    $name = $_REQUEST['name'];
     $dob = $_REQUEST['dob'];
     $contact = $_REQUEST['number'];
     $pincode = $_REQUEST['pin'];
     $place = $_REQUEST['place'];
     print_r($_REQUEST);
     http_response_code(200);
-    $update = "UPDATE user SET username = '" . $username . "', dob = '" . $dob . "',pincode = '" . $pincode . "', place = '" . $place . "' WHERE id=$id";
+    $update = "UPDATE user SET name = '" . $name . "', dob = '" . $dob . "',pincode = '" . $pincode . "', place = '" . $place . "' WHERE id=$id";
     $result = mysqli_query($sqlconnection, $update) or die("query error");
     print_r($result);
 
@@ -64,8 +64,8 @@ if ($_POST) {
                 <h1>Edit Details</h1>
                 <p><?php echo $msg; ?></p>
                 <form method="post" id="edit">
-                    <label for="username">Username</label><br>
-                    <input type="text" name="username" class="loginput" value="<?php echo $row['username']; ?>" required><br>
+                    <label for="name">Name</label><br>
+                    <input type="text" name="name" class="loginput" value="<?php echo $row['name']; ?>" required><br>
                     <label for="dob">DOB</label><br>
                     <input type="date" name="dob" id="" value="<?php echo $row['dob']; ?>" required><br><br>
                     <label for="number">Number</label><br>

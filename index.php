@@ -41,7 +41,7 @@ $selectdp = mysqli_fetch_assoc($result) or die("query error");
             <div>
                <form id="uploadData" action="upload.php" method="post" enctype="multipart/form-data">
                   <input type="file" name="addNew" id="addNew" accept="image/*" style="display: none;">
-                  <input type="file" name="addvid" id="addvid" accept="video/*" style="display: none;">
+                  <input type="file" name="addvid" id="addNew" accept="video/*" style="display: none;">
                   <i class="fa fa-plus" aria-hidden="true" id="add"></i>
                </form>
             </div>

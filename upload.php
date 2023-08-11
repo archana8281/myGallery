@@ -2,12 +2,11 @@
 $id = $_COOKIE['id'];
 $user = $_COOKIE['username'];
 $uid = rand(10, 100);
-$sqlconnection = mysqli_connect('localhost', 'root', '', 'mygallery');
-
+$sqlconnection = mysqli_connect('localhost', 'root', '', 'mygallery')or die("connection error");
 if ($_FILES) {
 
   $ext = strtolower(pathinfo($_FILES["addNew"]["name"], PATHINFO_EXTENSION));
- // Handle image upload
+ //  image upload
   if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif'])) {
     $targetFile1 = "upload/" . $user . "." . $uid . "." . $ext;
 
@@ -21,7 +20,7 @@ if ($_FILES) {
     }
   }
 
-  // Handle video upload
+  //  video upload
   elseif (in_array($ext, ['mp4', 'avi', 'mov'])) {
     $targetFile2 = "upload/" . $user . "." . $uid . "." . $ext;
 
