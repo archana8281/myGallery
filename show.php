@@ -22,9 +22,10 @@ $rows = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $rows[] = $row;
 }
-
 foreach ($rows as $row) {
     if (!empty($row['type']) && $row['type'] === 'image') {
+print_r($row);
+
         echo '<div class="column"> <img src="' . $row['path'] . '" alt="loading" style="height: 200px; width:200px;" onclick="myFunction(this,\'img\');" id="img"> 
         <div class="Dsection">
         <a href="delete.php?id=12' . $row['id'] . '" class="deletebtn">Delete</a>
