@@ -25,8 +25,8 @@ if ($_POST) {
     $msg = "Record Updated Successfully";
     header('Location: index.php');
     exit(0);
-} else {
-    $msg = "Invalid";
+} else{
+    http_response_code(400);
 }
 
 ?>
