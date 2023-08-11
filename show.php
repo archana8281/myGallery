@@ -1,17 +1,18 @@
 <?php
 $value = $_GET['val'];
+$id = $_COOKIE['id'];
 $user = $_COOKIE['username'];
 $sqlconnection = mysqli_connect('localhost', 'root', '', 'mygallery');
 
 switch ($value) {
     case 'img':
-        $sql = "SELECT * FROM `media` WHERE type = 'image'";
+        $sql = "SELECT * FROM media WHERE type = 'image' AND Uid = '$id'";
         break;
     case 'vid':
-        $sql = "SELECT * FROM `media` WHERE type = 'video'";
+        $sql = "SELECT * FROM media WHERE type = 'video' AND Uid = '$id'";
         break;
     default:
-        $sql = "SELECT * FROM media";
+        $sql = "SELECT * FROM media WHERE  Uid = '$id'";
         break;
 }
 
