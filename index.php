@@ -205,7 +205,7 @@ $selectdp = mysqli_fetch_assoc($result) or die("query error");
                processData: false,
                success: function(response) {
                   alert(response);
-                  // location.reload()
+                  location.reload()
                },
             });
          });

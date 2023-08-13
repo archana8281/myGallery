@@ -28,10 +28,12 @@ if ($_FILES) {
   //  video upload
   elseif (in_array($ext, ['mp4', 'avi', 'mov'])) {
     $targetFile2 = "upload/add/" . $user . "." . $uid . "." . $ext;
-
+print_r($targetFile2);
     if (move_uploaded_file($_FILES["addNew"]["tmp_name"], $targetFile2)) {
+      print_r($_FILES);
       $sql = "INSERT INTO media(type, path, Uid)  VALUES('video','$targetFile2','$id')";
       $result = mysqli_query($sqlconnection, $sql);
+      print_r($result);
       $targetFile2 . "?" . rand(1000, 10000);
       echo "uploaded successfully..";
     } else {
